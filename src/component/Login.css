@@ -1,0 +1,14 @@
+.container1{
+    background-color: rgb(76, 176, 243);
+    margin-top: 50px;
+    margin-bottom: 50px;
+    margin-left: 400px;
+    height: 480px;
+    width: 450px;
+
+}
+.text{
+    color: rgb(8, 8, 8);
+    font-size: large;
+    font: bolder;
+}

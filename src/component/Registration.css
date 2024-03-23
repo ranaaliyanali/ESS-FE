@@ -1,0 +1,39 @@
+body{
+    background-color: rgb(251, 253, 253);
+}
+.font {
+    font-size: xx-large;
+    font-weight: 800;
+  }
+  
+
+.container{
+    background-color: rgb(208, 227, 243);
+    margin-top: 50px;
+    margin-bottom: 50px;
+    height: 480px;
+    width: 600px;
+
+}
+.button{
+    width: 120px;
+    height: 40px;
+    
+}
+.no-border {
+    border: 0;
+    box-shadow: none; 
+    outline: none;
+    border-bottom: 2px solid rgb(12, 12, 12);
+    background-color:  rgb(208, 227, 243);
+
+}
+.register{
+    margin-left: 100px;
+    margin-top: 220px;
+    
+    color: black;
+}
+
+
+
