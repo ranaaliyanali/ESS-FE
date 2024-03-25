@@ -8,35 +8,31 @@ export default function Sysnotif(){
     const [show, setShow] = useState(false);
     const [msg, setMsg] = useState("");
     const isFirstRender = useRef(0);
-    const prevDepsRef = useRef({ loginInfo });
+    const prevDepsRef = useRef(loginInfo);
 
       useEffect(() => {
-        const currentDeps = { loginInfo };
-
+        const currentDeps = loginInfo;
+        debugger
         const changes = {};
         for (const key of Object.keys(currentDeps)) {
-          if (currentDeps[key] !== prevDepsRef.current[key]) {
-            changes[key] = {
-              from: prevDepsRef.current[key],
-              to: currentDeps[key],
-            };
-          }
-          else {
-              changes[key] = {}
-          }
+            if (currentDeps[key] !== prevDepsRef.current[key]) {
+                changes[key] = true;
+            }
         }
-        debugger
 
-        if(Object.keys(changes.loginInfo).length > 0){
-            if(changes.loginInfo.to.status == true) {
+        if(changes.status == true) {
+            if (loginInfo.status == true) {
                 debugger
                 setMsg("Logged in successfully")
-            }
-            else{
-                debugger
+            } else {
                 setMsg("Logged out successfully")
             }
         }
+        else if(changes.reg == true){
+            debugger
+            setMsg("Registered successfully")
+        }
+
 
         debugger
 

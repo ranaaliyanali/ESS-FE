@@ -1,5 +1,6 @@
 import React , {useState} from 'react'
 import { useNavigate } from 'react-router-dom';
+import { useDispatch } from "react-redux";
 
 
 import { NavLink } from "react-router-dom";
@@ -11,12 +12,11 @@ import 'bootstrap/dist/css/bootstrap.css';
 import "./Registration.css"
 
 import { useAuth } from '../store/auth';
+import {setRegInfo} from "../reducers/loginSlice";
 
 const Registration = () => {
-
-
-  const navigate = useNavigate();
-  const {storetokenInLS }= useAuth();
+    const dispatch = useDispatch();
+    const navigate = useNavigate();
 
     const [user , setUser] = useState({
         firstname:"", lastname:"", email:"" , password:"", cpassword:" ", phone:" "
@@ -24,14 +24,9 @@ const Registration = () => {
     let name , value;
 
     const handleInputs = (e) => {
-        console.log(e);
         name =  e.target.name;
         value = e.target.value;
-
-        console.log(name);
-
         setUser({...user, [name]:value});
-
     }
 
     const PostData = async (e) => {
@@ -49,23 +44,17 @@ const Registration = () => {
             })
         });
     
-        if (res.status === 422) {
-            console.log("Invalid credentials");
-        } else if (res.ok) { // Check if response status is in the range 200-299
-            const data = await res.json();
-            console.log("Response from server:", data);
-            storetokenInLS(data.token1)
-            
-            window.alert("Success registration");
+        if (res.ok) { // Check if response status is in the range 200-299
+            debugger
+            dispatch(setRegInfo(true));
             navigate('/login');
         } else {
-            console.log("Error:", res.statusText);
+            alert(res.statusText);
         }
     }
     
 
   return (
-    
        <>
             <div className="container border    justify-content-end  ">
                 <h2 className="mt-4 ml-2"><strong>Registration</strong></h2>
