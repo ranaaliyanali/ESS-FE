@@ -1,30 +1,18 @@
-
-
+import { useDispatch } from "react-redux";
+import {setLoginInfo} from "../headers/loginSlice";
 import React, {useEffect, useState} from 'react';
 import { NavLink } from 'react-router-dom';
 import './Login.css';
-
 import { useNavigate } from 'react-router-dom';
-
 import { useAuth } from '../store/auth';
 import {Alert} from "@mui/material";
 
-export default function Login(){
+const Login = () => {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
-  const [showAlert, setShowAlert] = useState(false);
   const navigate = useNavigate();
   const {storetokenInLS} = useAuth();
-
-  useEffect(() => {
-    debugger
-
-    setTimeout(() => {
-      debugger
-      setShowAlert(false);
-    }, 4000);
-
-  }, [showAlert]);
+  const dispatch = useDispatch();
 
   const loginUser = async (e) => {
     e.preventDefault();
@@ -38,24 +26,24 @@ export default function Login(){
     const data = await res.json();
     console.log(data);
     if (res.status === 200) {
-      setShowAlert(true);
-      debugger
-      localStorage.setItem("token", data.token)
-      navigate('/owner_about');
-    }
-    else {
+      alert(data.message);
+      storetokenInLS(data.token1);
+      dispatch(setLoginInfo(true));
+      // Redirect based on the user's role
+      if (data.message === 'Owner login successfully') {
+        navigate('/owner_about');
+      } else if (data.message === 'User login successfully') {
+        navigate('/user_about');
+      } else {
+        // Handle other cases, such as invalid credentials
+        // Redirect to a generic error page or handle it differently based on your requirements
+      }
+    } else {
       alert(data.message);
     }
   };
   return (
       <>
-        <div>
-          {showAlert && (
-              <Alert severity="success">
-                Logged in successfully!
-              </Alert>
-          )}
-        </div>
         <div className='container1  justify-content-center"'>
           <form method="POST">
             <div class="form-group ml-4 mr-4 mt-5 ">
@@ -94,3 +82,4 @@ export default function Login(){
 }
 
 
+export default Login;

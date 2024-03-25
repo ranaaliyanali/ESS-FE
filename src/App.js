@@ -1,6 +1,7 @@
 // App.js
 
 import React from "react";
+import Alert from './headers/alert'
 import Navbar from "./component/Navbar";
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import Registration from "./component/Registration";
@@ -15,6 +16,7 @@ const App = () => {
     <>
       <Router>
         <Navbar />
+        <Alert />
         <Routes>
           <Route exact path="/user_about" element={<User_about />} />
 

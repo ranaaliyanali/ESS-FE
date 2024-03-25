@@ -1,4 +1,4 @@
-import React, {useEffect, useState} from "react";
+import React from "react";
 import 'bootstrap/dist/css/bootstrap.css';
 import { NavLink } from "react-router-dom";
 import NavbarImage from "../images/home.png";
@@ -6,23 +6,7 @@ import './Navbar.css';
 import { useAuth } from "../store/auth";
 
 const Navbar = () => {
-    const [isLoggedIn, setIsLoggedIn] = useState(localStorage.getItem('token') ? true : false);
-
-    useEffect(() => {
-        const handleStorageChange = () => {
-            // Check if token exists in localStorage
-            const token = localStorage.getItem('token');
-            setIsLoggedIn(token ? true : false);
-        };
-
-        window.addEventListener('storage', handleStorageChange);
-
-        return () => {
-            window.removeEventListener('storage', handleStorageChange);
-        };
-    }, []);
-
-
+    const {isLoggedIn}= useAuth();
     return (
         <>
             <nav className="navbar pt-1 mt-3  navbar-expand-lg navbar-light bg-dark">

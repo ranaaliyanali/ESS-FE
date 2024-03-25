@@ -1,9 +1,9 @@
 import { configureStore } from '@reduxjs/toolkit';
-// import filterReducer from '../features/filters/filterSlice';
+import loginInfoReducer from '../headers/loginSlice';
 
 
 export const store = configureStore({
   reducer: {
-    // filters: filterReducer,
+    login_info: loginInfoReducer,
   },
 });

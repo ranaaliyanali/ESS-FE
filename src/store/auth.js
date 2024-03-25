@@ -4,16 +4,23 @@ export const AuthContext = createContext();
 
  export const  Authprovider = ({children}) => {
  
-    const [token, setToken1] = useState(localStorage.getItem("token"))
+    const [token1, setToken1] = useState(localStorage.getItem("token1"))
     const [owner , setOwner] = useState("");
 
-    let isLoggedIn = token;
+    const  storetokenInLS = (serverToken1) => {
+
+        setToken1(serverToken1);
+        return localStorage.setItem("token1", serverToken1)
+
+    };
+
+    let isLoggedIn = !!token1;
     console.log("isloggedIn",isLoggedIn);
 
 // Making the logout functionality
 const LogoutUser = () => {
     setToken1("");
-    return localStorage.removeItem("token")
+    return localStorage.removeItem("token1")
 }
 //     jwtauthentciation owner data
 
