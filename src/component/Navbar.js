@@ -1,12 +1,21 @@
-import React from "react";
+import React, {useEffect, useState} from "react";
 import 'bootstrap/dist/css/bootstrap.css';
 import { NavLink } from "react-router-dom";
 import NavbarImage from "../images/home.png";
 import './Navbar.css';
-import { useAuth } from "../store/auth";
+import {useSelector} from "react-redux";
+import {selectLoginInfo} from "../reducers/loginSlice";
+
 
 const Navbar = () => {
-    const {isLoggedIn}= useAuth();
+    const loginInfo = useSelector(selectLoginInfo);
+    const [loginInfo_l, setLoginInfo_l] = useState(false);
+
+
+    useEffect(() => {
+        setLoginInfo_l(loginInfo.status)
+    }, [loginInfo]);
+
     return (
         <>
             <nav className="navbar pt-1 mt-3  navbar-expand-lg navbar-light bg-dark">
@@ -25,11 +34,14 @@ const Navbar = () => {
                         <li className="nav-item">
                             <NavLink className="nav-link text-light" to="/owner_about">Owner_about</NavLink>
                         </li>
-                        {isLoggedIn ? (
+                        {loginInfo_l ?
+                            (
                             <li className="nav-item  ">
                                 <NavLink className="nav-link text-light" to="/logout">Logout</NavLink>
                             </li>
-                        ) : (
+                            )
+                                :
+                            (
                             <>
                                 <li className="nav-item">
                                     <NavLink className="nav-link text-light" to="/registration">Registration</NavLink>
@@ -38,9 +50,9 @@ const Navbar = () => {
                                 <li className="nav-item  ">
                                     <NavLink className="nav-link text-light" to="/login">Login</NavLink>
                                 </li>
-
                             </>
-                        )}
+                        )
+                        }
 
 
 

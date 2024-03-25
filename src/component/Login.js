@@ -1,17 +1,14 @@
 import { useDispatch } from "react-redux";
-import {setLoginInfo} from "../headers/loginSlice";
-import React, {useEffect, useState} from 'react';
+import {setLoginInfo} from "../reducers/loginSlice";
+import React, {useState} from 'react';
 import { NavLink } from 'react-router-dom';
 import './Login.css';
 import { useNavigate } from 'react-router-dom';
-import { useAuth } from '../store/auth';
-import {Alert} from "@mui/material";
 
 const Login = () => {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const navigate = useNavigate();
-  const {storetokenInLS} = useAuth();
   const dispatch = useDispatch();
 
   const loginUser = async (e) => {
@@ -24,20 +21,10 @@ const Login = () => {
       body: JSON.stringify({ email, password })
     });
     const data = await res.json();
-    console.log(data);
     if (res.status === 200) {
-      alert(data.message);
-      storetokenInLS(data.token1);
+      localStorage.setItem("token", data.token)
       dispatch(setLoginInfo(true));
-      // Redirect based on the user's role
-      if (data.message === 'Owner login successfully') {
-        navigate('/owner_about');
-      } else if (data.message === 'User login successfully') {
-        navigate('/user_about');
-      } else {
-        // Handle other cases, such as invalid credentials
-        // Redirect to a generic error page or handle it differently based on your requirements
-      }
+      navigate('/user_about');
     } else {
       alert(data.message);
     }

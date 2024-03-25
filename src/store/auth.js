@@ -4,22 +4,22 @@ export const AuthContext = createContext();
 
  export const  Authprovider = ({children}) => {
  
-    const [token1, setToken1] = useState(localStorage.getItem("token1"))
+    const [token, setToken] = useState(localStorage.getItem("token"))
     const [owner , setOwner] = useState("");
 
     const  storetokenInLS = (serverToken1) => {
 
-        setToken1(serverToken1);
+        setToken(serverToken1);
         return localStorage.setItem("token1", serverToken1)
 
     };
 
-    let isLoggedIn = !!token1;
+    let isLoggedIn = token;
     console.log("isloggedIn",isLoggedIn);
 
 // Making the logout functionality
 const LogoutUser = () => {
-    setToken1("");
+    setToken("");
     return localStorage.removeItem("token1")
 }
 //     jwtauthentciation owner data
@@ -29,7 +29,7 @@ const ownerAuthentication = async () =>{
         const response = await fetch('/owner_about',{
             method: "GET",
             headers:{
-                Authorization:`Bearer ${token1}`,
+                Authorization:`Bearer ${token}`,
             },
         });
 
