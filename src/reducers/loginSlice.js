@@ -14,7 +14,6 @@ export const loginSlice = createSlice({
       },
       setRegInfo: (state, action) => {
           state.reg = action.payload;
-          debugger;
       },
   },
 })

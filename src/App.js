@@ -6,6 +6,7 @@ import Login from "./component/Login";
 import User_about from "./component/User_about";
 import Logout from "./component/Logout";
 import Owner_about from "./component/Owner_about";
+import {Alert} from "@mui/material";
 import Sysnotif from "./headers/alert";
 
 const App = () => {

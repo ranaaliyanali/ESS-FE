@@ -11,7 +11,6 @@ import 'bootstrap/dist/css/bootstrap.css';
 
 import "./Registration.css"
 
-import { useAuth } from '../store/auth';
 import {setRegInfo} from "../reducers/loginSlice";
 
 const Registration = () => {
@@ -44,8 +43,7 @@ const Registration = () => {
             })
         });
     
-        if (res.ok) { // Check if response status is in the range 200-299
-            debugger
+        if (res.ok) {
             dispatch(setRegInfo(true));
             navigate('/login');
         } else {

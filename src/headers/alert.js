@@ -1,5 +1,5 @@
-import {selectLoginInfo} from "../reducers/loginSlice";
-import {useSelector} from "react-redux";
+import {selectLoginInfo, setRegInfo} from "../reducers/loginSlice";
+import {useDispatch, useSelector} from "react-redux";
 import {Alert} from "@mui/material";
 import {useEffect, useRef, useState} from "react";
 
@@ -9,10 +9,10 @@ export default function Sysnotif(){
     const [msg, setMsg] = useState("");
     const isFirstRender = useRef(0);
     const prevDepsRef = useRef(loginInfo);
+    const dispatch = useDispatch();
 
       useEffect(() => {
         const currentDeps = loginInfo;
-        debugger
         const changes = {};
         for (const key of Object.keys(currentDeps)) {
             if (currentDeps[key] !== prevDepsRef.current[key]) {
@@ -20,30 +20,33 @@ export default function Sysnotif(){
             }
         }
 
+        prevDepsRef.current = currentDeps;
+        debugger
         if(changes.status == true) {
             if (loginInfo.status == true) {
-                debugger
                 setMsg("Logged in successfully")
             } else {
                 setMsg("Logged out successfully")
             }
         }
-        else if(changes.reg == true){
-            debugger
+        else if(changes.reg == true) {
             setMsg("Registered successfully")
+            dispatch(setRegInfo(false));
         }
-
-
-        debugger
 
         if (isFirstRender.current < 2) {
             isFirstRender.current = isFirstRender.current + 1;
         } else {
+            debugger;
             setShow(true);
             const timer = setTimeout(() => setShow(false), 3000);
             return () => clearTimeout(timer);
         }
     }, [loginInfo]);
+
+    useEffect(() => {
+
+    }, [msg]);
 
     return(
         <>
