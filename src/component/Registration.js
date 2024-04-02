@@ -11,7 +11,7 @@ import 'bootstrap/dist/css/bootstrap.css';
 
 import "./Registration.css"
 
-import {setRegInfo} from "../reducers/loginSlice";
+import {setRegInfo} from "../reducers/alertSlice";
 
 const Registration = () => {
     const dispatch = useDispatch();

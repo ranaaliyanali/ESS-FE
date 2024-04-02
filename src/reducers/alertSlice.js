@@ -2,7 +2,7 @@ import { createSlice } from '@reduxjs/toolkit'
 
 
 
-export const loginSlice = createSlice({
+export const alertSlice = createSlice({
   name: 'login_info',
   initialState: {
       "status": false,
@@ -18,6 +18,6 @@ export const loginSlice = createSlice({
   },
 })
 
-export const { setLoginInfo, setRegInfo } = loginSlice.actions
+export const { setLoginInfo, setRegInfo } = alertSlice.actions
 export const selectLoginInfo = (state) => state.login_info;
-export default loginSlice.reducer
+export default alertSlice.reducer

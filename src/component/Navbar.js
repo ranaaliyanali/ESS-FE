@@ -4,7 +4,7 @@ import { NavLink } from "react-router-dom";
 import NavbarImage from "../images/home.png";
 import './Navbar.css';
 import {useSelector} from "react-redux";
-import {selectLoginInfo} from "../reducers/loginSlice";
+import {selectLoginInfo} from "../reducers/alertSlice";
 
 
 const Navbar = () => {
@@ -29,10 +29,10 @@ const Navbar = () => {
                 <div className="collapse navbar-collapse" id="navbarSupportedContent">
                     <ul className="navbar-nav ml-auto " >
                         <li className="nav-item active">
-                            <NavLink className="nav-link text-light" to="user_about">User_about <span className="sr-only">(current)</span></NavLink>
+                            <NavLink className="nav-link text-light" to="Profile">Profile<span className="sr-only">(current)</span></NavLink>
                         </li>
                         <li className="nav-item">
-                            <NavLink className="nav-link text-light" to="/owner_about">Owner_about</NavLink>
+                            <NavLink className="nav-link text-light" to="/cameras">Cameras</NavLink>
                         </li>
                         {loginInfo_l ?
                             (

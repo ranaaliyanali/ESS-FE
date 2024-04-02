@@ -1,5 +1,5 @@
 import { useDispatch } from "react-redux";
-import {setLoginInfo} from "../reducers/loginSlice";
+import {setLoginInfo} from "../reducers/alertSlice";
 import React, {useState} from 'react';
 import { NavLink } from 'react-router-dom';
 import './Login.css';

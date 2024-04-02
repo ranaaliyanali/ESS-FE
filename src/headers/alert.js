@@ -1,4 +1,4 @@
-import {selectLoginInfo, setRegInfo} from "../reducers/loginSlice";
+import {selectLoginInfo, setRegInfo} from "../reducers/alertSlice";
 import {useDispatch, useSelector} from "react-redux";
 import {Alert} from "@mui/material";
 import {useEffect, useRef, useState} from "react";

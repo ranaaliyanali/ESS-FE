@@ -1,6 +1,6 @@
 import React, { useEffect } from "react";
 import { useNavigate } from 'react-router-dom';
-import {setLoginInfo} from "../reducers/loginSlice";
+import {setLoginInfo} from "../reducers/alertSlice";
 import { useDispatch } from "react-redux";
 
 
